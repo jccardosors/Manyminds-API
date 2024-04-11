@@ -1,0 +1,9 @@
+Atenção
+
+Para a solution funconar faça o seguinte e na ordem abaixo:
+- Rode os scripts de banco que estão na pasta 'Scripts';
+- Rode todos eles na ordem do prefixo de nomenclatura 1, 2, 3;
+- Depois vá nos arquivos appsettings e altera a string de conexao colocando o nome do seu SQL Server local;
+- Defina o projeto Manyminds.Api como o sendo o start up project da solution;
+
+Após isso é para a API rodar e salvar dados na base
