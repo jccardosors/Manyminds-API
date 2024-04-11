@@ -62,10 +62,13 @@ builder.Services.AddAuthentication(opt =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen(c =>
-//{
-//    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api Manyminds", Version = "v1" });
-//});
+
+//CORS
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy",
+        policy => { policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader(); });
+});
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -95,6 +98,8 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+
+app.UseCors("CorsPolicy");
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())

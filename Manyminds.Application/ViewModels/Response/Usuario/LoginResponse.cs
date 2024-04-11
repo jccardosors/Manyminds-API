@@ -2,6 +2,6 @@
 {
     public class LoginResponse : ResultBase
     {
-        public string Data { get; set; }
+        public LoginDataVM Data { get; set; }
     }
 }

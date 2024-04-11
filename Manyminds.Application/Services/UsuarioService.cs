@@ -61,7 +61,12 @@ namespace Manyminds.Application.Services
                 }
 
                 var token = await _tokenService.GerarToken(usuario.Email);
-                response.Data = token;
+                response.Data = new LoginDataVM
+                {
+                    Email = usuario.Email,
+                    UsuarioId = usuario.Codigo,
+                    Token = token
+                };
 
             }
             catch (Exception ex)
