@@ -237,6 +237,31 @@ namespace Manyminds.Application.Services
             return response;
         }
 
+        public async Task<RetornarListaPedidosResponse> RetornarPedidosLista()
+        {
+            var response = new RetornarListaPedidosResponse
+            {
+                Status = (int)HttpStatusCode.OK
+            };
+
+            try
+            {
+                await _registroLogsService.RegistrarLogs(await _tokenService.RetornarEmailTokenClaims(), "PedidoCompraService", "RetornarLista");
+                              
+                var pedidoComprasList = await _pedidoCompraRepository.RetornarTodos();  
+
+                response.Data = _mapper.Map<IEnumerable<PedidoCompraVM>>(pedidoComprasList); ;
+            }
+            catch (Exception ex)
+            {
+                response.Status = (int)HttpStatusCode.InternalServerError;
+                response.Message = ex.GetBaseException().Message;
+            }
+
+            return response;
+        }
+
+
         private async Task<PedidoCompraResponse> AdicionarItens(IEnumerable<PedidoCompraItem> pedidoCompraItens, PedidoCompra pedidoCompra, PedidoCompraResponse response)
         {
             decimal total = 0;

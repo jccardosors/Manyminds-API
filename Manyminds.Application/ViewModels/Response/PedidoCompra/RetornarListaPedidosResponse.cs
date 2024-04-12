@@ -1,6 +1,6 @@
 ﻿namespace Manyminds.Application.ViewModels.Response.PedidoCompra
 {
-    public class RetornarListaResponse : ResultBase
+    public class RetornarListaPedidosResponse : ResultBase
     {
         public IEnumerable<PedidoCompraVM> Data { get; set; }
     }

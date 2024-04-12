@@ -91,7 +91,7 @@ namespace Manyminds.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet(Name = "ExcluirUsuario, {codigo}")]
+        [HttpDelete(Name = "ExcluirUsuario, {codigo}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -37,6 +37,23 @@ namespace Manyminds.Api.Controllers
             return Ok(response);
         }
 
+        [HttpGet(Name = "RetornarPedidosLista")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<RetornarListaPedidosResponse>> RetornarPedidosLista()
+        {
+            var response = await _pedidoCompraService.RetornarPedidosLista();
+
+            if (!response.Success)
+            {
+                _logger.Log(LogLevel.Error, response.Message);
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
+
         [HttpGet(Name = "RetornarPedidoCompra, {codigo}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -88,7 +105,7 @@ namespace Manyminds.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet(Name = "ExcluirPedidoCompra, {pedidoCompracodigo}")]
+        [HttpDelete(Name = "ExcluirPedidoCompra, {pedidoCompracodigo}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -124,6 +124,7 @@ namespace Manyminds.Application.Services
                 var usuarioMapper = _mapper.Map<Usuario>(usuarioVMRequest);
                 var usuarioSalvo = await _usuarioRepository.Adicionar(usuarioMapper);
                 response.Data = _mapper.Map<UsuarioVM>(usuarioSalvo);
+                response.Message = "Usuário salvo com sucesso!";
             }
             catch (Exception ex)
             {
@@ -173,6 +174,7 @@ namespace Manyminds.Application.Services
                     UsuarioId = usuarioAlterado.Codigo,
                     Token = token
                 };
+                response.Message = "Usuário alterado com sucesso!";
             }
             catch (Exception ex)
             {

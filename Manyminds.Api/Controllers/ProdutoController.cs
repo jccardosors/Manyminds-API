@@ -88,7 +88,7 @@ namespace Manyminds.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet(Name = "AtivarDesativarProduto, {codigo}")]
+        [HttpDelete(Name = "AtivarDesativarProduto, {codigo}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

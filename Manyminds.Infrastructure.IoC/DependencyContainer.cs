@@ -16,6 +16,7 @@ namespace Manyminds.Infrastructure.IoC
             services.AddScoped<IRegistroLogsService, RegistroLogsService>();
             services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<IPedidoCompraService, PedidoCompraService>();
+            services.AddScoped<IFornecedorService, FornecedorService>();
 
             //domain and Infra.data
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();

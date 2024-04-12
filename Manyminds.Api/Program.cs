@@ -105,7 +105,7 @@ app.UseCors("CorsPolicy");
 //if (app.Environment.IsDevelopment())
 //{
 app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "apiagenda v1"));
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api Manyminds v1"));
 //}
 
 app.UseHttpsRedirection();

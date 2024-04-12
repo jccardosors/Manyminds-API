@@ -40,6 +40,7 @@ namespace Manyminds.Application.Services
 
                 var produtoSalvo = await _produtoRepository.Adicionar(produtoMapper);
                 response.Data = _mapper.Map<ProdutoVM>(produtoMapper);
+                response.Message = "Produto cadastrado com sucesso!";
             }
             catch (Exception ex)
             {
@@ -83,6 +84,7 @@ namespace Manyminds.Application.Services
 
                 var produtoAlterado = await _produtoRepository.Alterar(produto);
                 response.Data = _mapper.Map<ProdutoVM>(produtoAlterado);
+                response.Message = "Produto alterado com sucesso!";
             }
             catch (Exception ex)
             {
@@ -106,6 +108,7 @@ namespace Manyminds.Application.Services
 
                 var produto = await _produtoRepository.AtivarDesativar(codigo);
                 response.Data = _mapper.Map<ProdutoVM>(produto);
+                response.Message = produto.Ativo ? "Produto ativado com sucesso!" : "Produto desativado com sucesso!";
             }
             catch (Exception ex)
             {

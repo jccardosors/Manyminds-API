@@ -36,9 +36,11 @@ namespace Manyminds.Infra.Data.Repositories
             return entity!;
         }
 
-        public Task<IEnumerable<Fornecedor>> RetornarTodos()
+        public async Task<IEnumerable<Fornecedor>> RetornarTodos()
         {
-            throw new NotImplementedException();
+            var entity = await _context.fornecedors.ToListAsync();
+
+            return entity!;
         }
 
         private bool disposed = false;

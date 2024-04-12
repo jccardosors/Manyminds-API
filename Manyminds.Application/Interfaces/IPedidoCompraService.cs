@@ -14,5 +14,7 @@ namespace Manyminds.Application.Interfaces
         Task<PedidoCompraResponse> Alterar(PedidoCompraVMRequest pedidoCompraVMRequest);
 
         Task<PedidoCompraResponse> Excluir(int codigo);
+
+        Task<RetornarListaPedidosResponse> RetornarPedidosLista();
     }
 }
