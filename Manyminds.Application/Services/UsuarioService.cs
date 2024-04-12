@@ -134,9 +134,9 @@ namespace Manyminds.Application.Services
             return response;
         }
 
-        public async Task<UsuarioResponse> Alterar(UsuarioVMRequest usuarioVMRequest)
+        public async Task<LoginResponse> Alterar(UsuarioVMRequest usuarioVMRequest)
         {
-            var response = new UsuarioResponse
+            var response = new LoginResponse
             {
                 Status = (int)HttpStatusCode.OK
             };
@@ -164,8 +164,15 @@ namespace Manyminds.Application.Services
                 usuario.Email = usuarioVMRequest.Email;
                 usuario.Senha = usuarioVMRequest.Senha;
 
-                var usuarioAlterado = await _usuarioRepository.Alterar(usuario);
-                response.Data = _mapper.Map<UsuarioVM>(usuarioAlterado);
+                var usuarioAlterado = await _usuarioRepository.Alterar(usuario);    
+                var token = await _tokenService.GerarToken(usuario.Email);
+
+                response.Data = new LoginDataVM
+                {
+                    Email = usuarioAlterado.Email,
+                    UsuarioId = usuarioAlterado.Codigo,
+                    Token = token
+                };
             }
             catch (Exception ex)
             {

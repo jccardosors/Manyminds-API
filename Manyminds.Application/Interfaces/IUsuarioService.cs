@@ -12,7 +12,7 @@ namespace Manyminds.Application.Interfaces
 
         Task<UsuarioResponse> Adicionar(UsuarioVMRequest usuarioVMRequest);
 
-        Task<UsuarioResponse> Alterar(UsuarioVMRequest usuarioVMRequest);
+        Task<LoginResponse> Alterar(UsuarioVMRequest usuarioVMRequest);
 
         Task<UsuarioResponse> RetornarItem(int codigo);
 

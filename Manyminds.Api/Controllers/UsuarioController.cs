@@ -78,7 +78,7 @@ namespace Manyminds.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<UsuarioResponse>> AlterarUsuario(UsuarioVMRequest usuario)
+        public async Task<ActionResult<LoginResponse>> AlterarUsuario(UsuarioVMRequest usuario)
         {
             var response = await _usuarioService.Alterar(usuario);
 
