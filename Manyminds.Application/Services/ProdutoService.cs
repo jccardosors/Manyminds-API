@@ -14,14 +14,16 @@ namespace Manyminds.Application.Services
         private readonly ITokenService _tokenService;
         private readonly IRegistroLogsService _registroLogsService;
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IMapper _mapper;
 
-        public ProdutoService(ITokenService tokenService, IRegistroLogsService registroLogsService, IProdutoRepository produtoRepository, IMapper mapper)
+        public ProdutoService(ITokenService tokenService, IRegistroLogsService registroLogsService, IProdutoRepository produtoRepository, IMapper mapper, IFornecedorRepository fornecedorRepository)
         {
             _tokenService = tokenService;
             _registroLogsService = registroLogsService;
             _produtoRepository = produtoRepository;
             _mapper = mapper;
+            _fornecedorRepository = fornecedorRepository;   
         }
 
         public async Task<ProdutoResponse> Adicionar(ProdutoVMRequest produtoVMRequest)
@@ -154,7 +156,14 @@ namespace Manyminds.Application.Services
                 await _registroLogsService.RegistrarLogs(await _tokenService.RetornarEmailTokenClaims(), "ProdutoService", "RetornarLista");
 
                 var lista = await _produtoRepository.RetornarTodos();
-                response.Data = _mapper.Map<IEnumerable<ProdutoVM>>(lista);
+                var listaMappr = _mapper.Map<IEnumerable<ProdutoVM>>(lista);
+                foreach (var item in listaMappr)
+                {
+                    var fornecedorNome = await _fornecedorRepository.RetornarItem(item.FornecedorCodigo);
+                    item.FornecedorNome = fornecedorNome.Nome.Length > 10 ? $"{fornecedorNome.Nome.Substring(0, 9)}..." : fornecedorNome.Nome;
+                }
+
+                response.Data = listaMappr;
             }
             catch (Exception ex)
             {

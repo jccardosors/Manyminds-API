@@ -247,10 +247,17 @@ namespace Manyminds.Application.Services
             try
             {
                 await _registroLogsService.RegistrarLogs(await _tokenService.RetornarEmailTokenClaims(), "PedidoCompraService", "RetornarLista");
-                              
-                var pedidoComprasList = await _pedidoCompraRepository.RetornarTodos();  
 
-                response.Data = _mapper.Map<IEnumerable<PedidoCompraVM>>(pedidoComprasList); ;
+                var pedidoComprasList = await _pedidoCompraRepository.RetornarTodos();
+                var listaMapper = _mapper.Map<IEnumerable<PedidoCompraVM>>(pedidoComprasList);
+                foreach (var item in listaMapper)
+                {
+                    item.Observacao = item.Observacao.Length > 12 ? $"{item.Observacao.Substring(0, 11)}..." : item.Observacao;
+                    var fornecedorNome = await _fornecedorRepository.RetornarItem(item.FornecedorCodigo);
+                    item.FornecedorNome = fornecedorNome.Nome.Length > 10 ? $"{fornecedorNome.Nome.Substring(0, 9)}..." : fornecedorNome.Nome;
+                }
+
+                response.Data = listaMapper;
             }
             catch (Exception ex)
             {
