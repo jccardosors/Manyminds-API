@@ -105,13 +105,13 @@ namespace Manyminds.Api.Controllers
             return Ok(response);
         }
 
-        [HttpDelete(Name = "ExcluirPedidoCompra, {pedidoCompracodigo}")]
+        [HttpDelete(Name = "ExcluirPedidoCompra, {codigo}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<PedidoCompraResponse>> ExcluirPedidoCompra(int pedidoCompracodigo)
+        public async Task<ActionResult<PedidoCompraResponse>> ExcluirPedidoCompra(int codigo)
         {
-            var response = await _pedidoCompraService.Excluir(pedidoCompracodigo);
+            var response = await _pedidoCompraService.Excluir(codigo);
 
             if (!response.Success)
             {

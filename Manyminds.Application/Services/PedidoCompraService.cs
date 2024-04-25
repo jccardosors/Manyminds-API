@@ -53,6 +53,10 @@ namespace Manyminds.Application.Services
 
                     //inclui os itens que estao chegando do front end
                     response = await AdicionarItens(pedidoCompraItens, pedidoCompra, response);
+                    if (response.Success)
+                    {
+                        response.Message = "Pedido de compra incluído com sucesso.";
+                    }
                 }
             }
             catch (Exception ex)
@@ -121,14 +125,21 @@ namespace Manyminds.Application.Services
             {
                 await _registroLogsService.RegistrarLogs(await _tokenService.RetornarEmailTokenClaims(), "PedidoCompraService", "Excluir");
 
-                var pedidoComprasItens = await _pedidoCompraItemRepository.RetornarItensPorCodigoPedidoCompra(codigo);
+                var pedidoCompra = await _pedidoCompraRepository.RetornarItem(codigo);
+                if (pedidoCompra.Status == (int)PedidoStatusEnum.Finalizado)
+                {
+                    response.Status = (int)HttpStatusCode.NotModified;
+                    response.Message = "Pedido não pode ser excluído, pois esta com o status 'Finalizado'.";
+                }
 
+                var pedidoComprasItens = await _pedidoCompraItemRepository.RetornarItensPorCodigoPedidoCompra(codigo);
                 foreach (var item in pedidoComprasItens)
                 {
                     await _pedidoCompraItemRepository.Excluir(item.Codigo);
                 }
 
                 await _pedidoCompraRepository.Excluir(codigo);
+                response.Message = "Pedido excluído com sucesso!";
             }
             catch (Exception ex)
             {
