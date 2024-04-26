@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Manyminds.Infrastructure.IoC\Manyminds.Infrastructure.IoC.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="Manyminds.Tests" />
+	</ItemGroup>
+
 </Project>

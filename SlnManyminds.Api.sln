@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Manyminds.Infra.Data", "Man
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Manyminds.Infrastructure.IoC", "Manyminds.Infrastructure.IoC\Manyminds.Infrastructure.IoC.csproj", "{883DA271-DE70-4313-947F-E47632092552}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manyminds.Tests", "Manyminds.Tests\Manyminds.Tests.csproj", "{C57819AB-A699-44BC-B1D5-FAFC528F8E83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{883DA271-DE70-4313-947F-E47632092552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{883DA271-DE70-4313-947F-E47632092552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{883DA271-DE70-4313-947F-E47632092552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C57819AB-A699-44BC-B1D5-FAFC528F8E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C57819AB-A699-44BC-B1D5-FAFC528F8E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C57819AB-A699-44BC-B1D5-FAFC528F8E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C57819AB-A699-44BC-B1D5-FAFC528F8E83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
